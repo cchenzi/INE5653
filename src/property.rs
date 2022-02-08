@@ -10,7 +10,7 @@ pub struct InputProperty {
     pub size: u16,
 }
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Property {
     pub id: uuid::Uuid,
     pub value: String,
