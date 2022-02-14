@@ -3,6 +3,8 @@ use std::{
     io::{BufReader, BufWriter},
 };
 
+use chrono::{TimeZone, Utc};
+
 use crate::property::{InputProperty, Property};
 
 const DB_FILE_NAME: &str = "./data/db.json";
@@ -58,8 +60,14 @@ pub fn insert_property(
     let size = content.len();
     let id = uuid::Uuid::new_v4();
     let property = Property {
+        build_date: Utc
+            .ymd(input.year as i32, input.month as u32, input.day as u32)
+            .naive_utc(),
+        created_at: Utc::now(),
+        description: input.description,
         id,
         value: input.value,
+        size: input.size,
     };
     content.push(property);
     save_content(content);

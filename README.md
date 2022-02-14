@@ -9,8 +9,9 @@ Install [it](https://www.rust-lang.org/tools/install) and then `cargo run`.
 ### Add
 
 ```bash
-curl -H "Content-type: application/json" -d '{"day": "1", "month": "1", "year": "1", "description": "bla", "value": "1", "size": 1}' 'localhost:6666/add'
+curl -XPOST -H "Content-type: application/json" -d '{"day": 14, "month": 2, "year": 1862, "description": "The House of the Dead ", "value": "66666", "size": 368}' 'localhost:6666/add'
 ```
+
 
 ### Delete
 

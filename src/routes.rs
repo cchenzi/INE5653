@@ -54,7 +54,10 @@ pub async fn get(id: web::Bytes, content: web::Data<Arc<Mutex<Vec<Property>>>>) 
 
 pub async fn list(content: web::Data<Arc<Mutex<Vec<Property>>>>) -> HttpResponse {
     let content = content.lock().unwrap();
-    let list_str = crate::property::display_property_list(&content);
+    let list_str = match content.len() {
+        0 => "No property to show!".to_string(),
+        _ => crate::property::display_property_list(&content),
+    };
     println!("{:?}", list_str);
     HttpResponse::Ok().body(list_str)
 }

@@ -1,22 +1,18 @@
 [
   {
-    "id": "c4dc35a3-bbc9-4213-bedb-732fe8fba73f",
-    "value": "666"
+    "build_date": "1862-02-14",
+    "created_at": "2022-02-14T22:42:14.046145794Z",
+    "description": "The House of the Dead ",
+    "id": "c35c6ef5-5410-43aa-a307-459a7e538a9c",
+    "value": "66666",
+    "size": 368
   },
   {
-    "id": "e50c049d-96fe-4ebc-baa9-439aaafa920f",
-    "value": "9"
-  },
-  {
-    "id": "27e1f99c-b396-49e5-8b8e-7a7a348df5a7",
-    "value": "12"
-  },
-  {
-    "id": "b8586dd4-1f22-453c-9ee3-945faa10d11a",
-    "value": "5"
-  },
-  {
-    "id": "53bbf743-8c24-4c58-b0b2-73f46ab251c8",
-    "value": "1"
+    "build_date": "2004-04-16",
+    "created_at": "2022-02-14T22:43:35.682572515Z",
+    "description": "House M.D. ",
+    "id": "a0cf1c1c-4d70-4de4-9b14-7abaaca7fd7f",
+    "value": "8",
+    "size": 177
   }
 ]
