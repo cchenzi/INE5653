@@ -8,7 +8,6 @@ use crate::routes::{add, delete, get, health_check, list};
 
 pub fn run() -> Result<Server, std::io::Error> {
     let data = web::Data::new(std::sync::Arc::new(Mutex::new(init_database())));
-    println!("oi");
     let server = HttpServer::new(move || {
         App::new()
             .app_data(data.clone())

@@ -44,12 +44,18 @@ pub fn search_content(content: &[Property], id: &uuid::Uuid) -> Result<Property,
     Err("Property not found!".to_string())
 }
 
-pub fn delete_property(content: &mut Vec<Property>, id: &uuid::Uuid) {
+pub fn delete_property(content: &mut Vec<Property>, id: &uuid::Uuid) -> bool {
+    let size = content.len();
     content.retain(|p| p.id != *id);
     save_content(content);
+    size - 1 == content.len()
 }
 
-pub fn insert_property(content: &mut Vec<Property>, input: InputProperty) {
+pub fn insert_property(
+    content: &mut Vec<Property>,
+    input: InputProperty,
+) -> Result<uuid::Uuid, String> {
+    let size = content.len();
     let id = uuid::Uuid::new_v4();
     let property = Property {
         id,
@@ -57,4 +63,8 @@ pub fn insert_property(content: &mut Vec<Property>, input: InputProperty) {
     };
     content.push(property);
     save_content(content);
+    match size + 1 == content.len() {
+        true => Ok(id),
+        false => Err("Error".to_string()),
+    }
 }
