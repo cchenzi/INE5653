@@ -17,7 +17,7 @@ pub async fn add(
 ) -> HttpResponse {
     let mut content = content.lock().unwrap();
     let response_str = match insert_property(&mut content, property.into_inner()) {
-        Ok(id) => format!("Property successfully inserted with uuid={}", id),
+        Ok(id) => format!("Property successfully added with uuid={}", id),
         Err(e) => e,
     };
     println!("{}", response_str);
