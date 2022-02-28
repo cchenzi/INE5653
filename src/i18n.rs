@@ -1,18 +1,28 @@
 #![allow(unused)]
 
 use fluent_templates::{LanguageIdentifier, Loader};
+use lazy_static::lazy_static;
 use std::collections::HashMap;
 use unic_langid::langid;
 
 fluent_templates::static_loader! {
-    static LOCALES = {
+    pub static LOCALES = {
         locales: "./locales",
         fallback_language: "en-US",
     };
 }
 
-const US_ENGLISH: LanguageIdentifier = langid!("en-US");
-const BR_PORTUGUESE: LanguageIdentifier = langid!("pt-BR");
+pub const US_ENGLISH: LanguageIdentifier = langid!("en-US");
+pub const BR_PORTUGUESE: LanguageIdentifier = langid!("pt-BR");
+
+lazy_static! {
+    pub static ref LANGUAGE_IDENTIFIER_MAP: HashMap<String, LanguageIdentifier> = {
+        let mut m = HashMap::new();
+        m.insert("pt_BR".to_string(), BR_PORTUGUESE);
+        m.insert("en_US".to_string(), US_ENGLISH);
+        m
+    };
+}
 
 #[cfg(test)]
 mod tests {

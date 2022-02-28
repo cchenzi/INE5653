@@ -1,14 +1,23 @@
 use std::sync::{Arc, Mutex};
 
 use actix_web::{web, HttpResponse};
+use fluent_templates::Loader;
 
 use crate::{
+    config::APP_LANGUAGE,
     db::{delete_property, insert_property, search_content},
+    i18n::{LANGUAGE_IDENTIFIER_MAP, LOCALES},
     property::{InputProperty, Property},
 };
 
 pub async fn health_check() -> HttpResponse {
-    HttpResponse::Ok().body("I'm alive!")
+    let message = LOCALES.lookup(
+        &LANGUAGE_IDENTIFIER_MAP
+            .get(APP_LANGUAGE.as_str())
+            .expect("LanguageIdentifier not found"),
+        "health-check",
+    );
+    HttpResponse::Ok().body(message)
 }
 
 pub async fn add(
