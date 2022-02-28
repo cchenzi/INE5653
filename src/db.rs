@@ -68,6 +68,8 @@ pub fn insert_property(
         id,
         value: input.value,
         size: input.size,
+        country: input.country.as_str().to_string(),
+        currency: input.country.currency().to_string(),
     };
     content.push(property);
     save_content(content);
