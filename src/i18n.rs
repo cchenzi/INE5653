@@ -18,8 +18,8 @@ pub const BR_PORTUGUESE: LanguageIdentifier = langid!("pt-BR");
 lazy_static! {
     pub static ref LANGUAGE_IDENTIFIER_MAP: HashMap<String, LanguageIdentifier> = {
         let mut m = HashMap::new();
-        m.insert("pt_BR".to_string(), BR_PORTUGUESE);
-        m.insert("en_US".to_string(), US_ENGLISH);
+        m.insert("pt-BR".to_string(), BR_PORTUGUESE);
+        m.insert("en-US".to_string(), US_ENGLISH);
         m
     };
 }
