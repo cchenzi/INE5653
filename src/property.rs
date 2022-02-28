@@ -1,7 +1,13 @@
-use std::fmt;
+use std::{collections::HashMap, fmt};
 
 use chrono::Utc;
+use fluent_templates::Loader;
 use serde::{Deserialize, Serialize};
+
+use crate::{
+    config::APP_LANGUAGE,
+    i18n::{LANGUAGE_IDENTIFIER_MAP, LOCALES},
+};
 
 #[derive(Deserialize, Serialize, Debug)]
 pub enum AllowedCountries {
@@ -53,10 +59,37 @@ pub struct Property {
 
 impl fmt::Display for Property {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let fluent_args: HashMap<String, _> = {
+            let mut map = HashMap::new();
+            map.insert(String::from("id"), self.id.to_string().into());
+            map.insert(
+                String::from("build_date"),
+                self.build_date.to_string().into(),
+            );
+            map.insert(
+                String::from("created_at"),
+                self.created_at.to_string().into(),
+            );
+            map.insert(
+                String::from("description"),
+                self.description.to_owned().into(),
+            );
+            map.insert(String::from("value"), self.value.to_owned().into());
+            map.insert(String::from("size"), self.size.to_owned().into());
+            map.insert(String::from("country"), self.country.to_owned().into());
+            map.insert(String::from("currency"), self.currency.to_owned().into());
+            map
+        };
         write!(
             f,
-            "Id: {}\nBuild date: {}\nCreated at: {}\nDescription: {}\nValue: {}\nSize: {}\nCountry: {} \nCurrency: {}",
-            self.id, self.build_date, self.created_at, self.description, self.value, self.size, self.country, self.currency
+            "{}",
+            LOCALES.lookup_with_args(
+                &LANGUAGE_IDENTIFIER_MAP
+                    .get(APP_LANGUAGE.as_str())
+                    .expect("LanguageIdentifier not found"),
+                "display-resource",
+                &fluent_args,
+            )
         )
     }
 }

@@ -1,5 +1,4 @@
-hello-world = eae!
-
+default-error = Algo ocorreu mal com a sua requisição...
 deleted-resource = { $id } foi deletado com sucesso!
 added-resource = Propriedade adicionada com sucesso. Id gerado={ $id }!
 not-found-resource = Id { $id } não foi encontrado!

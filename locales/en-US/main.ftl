@@ -1,5 +1,4 @@
-hello-world = Hello World!
-
+default-error = Something went wrong with your request...
 deleted-resource = { $id } was deleted with success!
 added-resource = Property successfully added. Generated id={ $id }!
 not-found-resource = { $id } not found!
