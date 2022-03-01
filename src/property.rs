@@ -100,7 +100,7 @@ impl Property {
     pub fn parse_value(value: &str) -> f64 {
         value.trim().replace(",", ".").parse::<f64>().unwrap()
     }
-    pub fn harmonize_size(country: AllowedCountries, size: f64) -> f64 {
+    pub fn harmonize_size(country: &AllowedCountries, size: f64) -> f64 {
         match country {
             // feet² to m²
             AllowedCountries::USA => size * 0.92,

@@ -67,7 +67,7 @@ pub fn insert_property(
         description: input.description,
         id,
         value: Property::parse_value(&input.value),
-        size: input.size as f64,
+        size: Property::harmonize_size(&input.country, input.size as f64),
         country: input.country.as_str().to_string(),
         currency: input.country.currency().to_string(),
     };

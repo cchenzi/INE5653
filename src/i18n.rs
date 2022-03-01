@@ -44,6 +44,7 @@ pub fn format_currency_value(currency: &str, value: f64) -> String {
 pub fn format_size_value(size: f64) -> String {
     match APP_LANGUAGE.as_str() {
         "pt-BR" => format!("{}m²", size),
+        // m² to feet²
         "en-US" => format!("{}ft²", size * 10.76),
         _ => "ERROR".to_string(),
     }
