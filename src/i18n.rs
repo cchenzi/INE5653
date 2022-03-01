@@ -87,20 +87,21 @@ mod tests {
     fn test_messages_with_args() {
         let args: HashMap<String, _> = {
             let mut map = HashMap::new();
-            map.insert(String::from("id"), "123".into());
+            map.insert(String::from("code"), "INE5653".into());
+            map.insert(String::from("name"), "i18n".into());
             map
         };
 
-        let added_en_us = LOCALES.lookup_with_args(&US_ENGLISH, "added-resource", &args);
-        let added_pt_br = LOCALES.lookup_with_args(&BR_PORTUGUESE, "added-resource", &args);
+        let args_en_us = LOCALES.lookup_with_args(&US_ENGLISH, "test-args", &args);
+        let args_pt_br = LOCALES.lookup_with_args(&BR_PORTUGUESE, "test-args", &args);
 
         assert_eq!(
-            added_en_us,
-            "Property successfully added. Generated id=\u{2068}123\u{2069}!"
+            args_en_us,
+            "Code: \u{2068}INE5653\u{2069}; Name: \u{2068}i18n\u{2069}"
         );
         assert_eq!(
-            added_pt_br,
-            "Propriedade adicionada com sucesso. Id gerado=\u{2068}123\u{2069}!"
+            args_pt_br,
+            "Código: \u{2068}INE5653\u{2069}; Nome: \u{2068}i18n\u{2069}"
         );
     }
 }

@@ -86,7 +86,7 @@ impl fmt::Display for Property {
             f,
             "{}",
             LOCALES.lookup_with_args(
-                &LANGUAGE_IDENTIFIER_MAP
+                LANGUAGE_IDENTIFIER_MAP
                     .get(APP_LANGUAGE.as_str())
                     .expect("LanguageIdentifier not found"),
                 "display-resource",

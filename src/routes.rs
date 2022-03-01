@@ -15,7 +15,7 @@ use crate::{
 
 pub async fn health_check() -> HttpResponse {
     let message = LOCALES.lookup(
-        &LANGUAGE_IDENTIFIER_MAP
+        LANGUAGE_IDENTIFIER_MAP
             .get(APP_LANGUAGE.as_str())
             .expect("LanguageIdentifier not found"),
         "health-check",
@@ -36,7 +36,7 @@ pub async fn add(
                 map
             };
             LOCALES.lookup_with_args(
-                &LANGUAGE_IDENTIFIER_MAP
+                LANGUAGE_IDENTIFIER_MAP
                     .get(APP_LANGUAGE.as_str())
                     .expect("LanguageIdentifier not found"),
                 "added-resource",
@@ -44,7 +44,7 @@ pub async fn add(
             )
         }
         Err(_) => LOCALES.lookup(
-            &LANGUAGE_IDENTIFIER_MAP
+            LANGUAGE_IDENTIFIER_MAP
                 .get(APP_LANGUAGE.as_str())
                 .expect("LanguageIdentifier not found"),
             "default-error",
@@ -68,14 +68,14 @@ pub async fn delete(id: web::Bytes, content: web::Data<Arc<Mutex<Vec<Property>>>
     };
     let response_str = match deleted {
         true => LOCALES.lookup_with_args(
-            &LANGUAGE_IDENTIFIER_MAP
+            LANGUAGE_IDENTIFIER_MAP
                 .get(APP_LANGUAGE.as_str())
                 .expect("LanguageIdentifier not found"),
             "deleted-resource",
             &fluent_args,
         ),
         false => LOCALES.lookup_with_args(
-            &LANGUAGE_IDENTIFIER_MAP
+            LANGUAGE_IDENTIFIER_MAP
                 .get(APP_LANGUAGE.as_str())
                 .expect("LanguageIdentifier not found"),
             "not-found-resource",
@@ -100,7 +100,7 @@ pub async fn get(id: web::Bytes, content: web::Data<Arc<Mutex<Vec<Property>>>>) 
                 map
             };
             LOCALES.lookup_with_args(
-                &LANGUAGE_IDENTIFIER_MAP
+                LANGUAGE_IDENTIFIER_MAP
                     .get(APP_LANGUAGE.as_str())
                     .expect("LanguageIdentifier not found"),
                 "not-found-resource",
@@ -116,7 +116,7 @@ pub async fn list(content: web::Data<Arc<Mutex<Vec<Property>>>>) -> HttpResponse
     let content = content.lock().unwrap();
     let list_str = match content.len() {
         0 => LOCALES.lookup(
-            &LANGUAGE_IDENTIFIER_MAP
+            LANGUAGE_IDENTIFIER_MAP
                 .get(APP_LANGUAGE.as_str())
                 .expect("LanguageIdentifier not found"),
             "empty-list-resource",

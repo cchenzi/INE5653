@@ -13,4 +13,7 @@ display-resource = Id: { $id }
 
 health-check = Vivo!
 
+hello-world = eae!
+test-args = Código: { $code }; Nome: { $name }
+
 

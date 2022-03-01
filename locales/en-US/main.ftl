@@ -12,3 +12,6 @@ display-resource = Id: { $id }
     Country: { $country }
 
 health-check = Alive!
+
+hello-world = Hello World!
+test-args = Code: { $code }; Name: { $name }
