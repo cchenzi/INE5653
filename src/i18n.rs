@@ -1,9 +1,18 @@
 #![allow(unused)]
 
-use fluent_templates::{LanguageIdentifier, Loader};
+use chrono::Utc;
+use fluent_templates::{
+    fluent_bundle::{
+        types::{FluentNumber, FluentNumberCurrencyDisplayStyle, FluentNumberOptions},
+        FluentValue,
+    },
+    LanguageIdentifier, Loader,
+};
 use lazy_static::lazy_static;
 use std::collections::HashMap;
 use unic_langid::langid;
+
+use crate::config::APP_LANGUAGE;
 
 fluent_templates::static_loader! {
     pub static LOCALES = {
@@ -22,6 +31,41 @@ lazy_static! {
         m.insert("en-US".to_string(), US_ENGLISH);
         m
     };
+}
+
+pub fn format_currency_value(currency: &str, value: f64) -> String {
+    match APP_LANGUAGE.as_str() {
+        "pt-BR" => format!("{} {}", currency, value.to_string().replace(".", ",")),
+        "en-US" => format!("{} {}", currency, value),
+        _ => "ERROR".to_string(),
+    }
+}
+
+pub fn format_size_value(size: f64) -> String {
+    match APP_LANGUAGE.as_str() {
+        "pt-BR" => format!("{}m²", size),
+        "en-US" => format!("{}ft²", size * 10.76),
+        _ => "ERROR".to_string(),
+    }
+}
+
+pub fn format_naive_date(date: &chrono::NaiveDate) -> String {
+    match APP_LANGUAGE.as_str() {
+        "pt-BR" => date.format("%d/%m/%Y").to_string(),
+        "en-US" => date.format("%m/%d/%Y").to_string(),
+        _ => "ERROR".to_string(),
+    }
+}
+
+pub fn format_date_time(datetime: &chrono::DateTime<Utc>) -> String {
+    let locale = match APP_LANGUAGE.as_str() {
+        "pt-BR" => chrono::Locale::pt_BR,
+        "en-US" => chrono::Locale::en_US,
+        _ => return "ERROR".to_string(),
+    };
+    datetime
+        .format_localized("%A, %e %B %Y, %T", locale)
+        .to_string()
 }
 
 #[cfg(test)]

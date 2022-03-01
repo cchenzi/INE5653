@@ -4,19 +4,19 @@
     "created_at": "2022-02-28T16:50:36.145577884Z",
     "description": "The House of the Dead ",
     "id": "b265a949-a22c-4ce3-8818-dfe661f90722",
-    "value": "66666",
+    "value": 66666.0,
     "size": 368,
     "country": "Brasil",
-    "currency": "Real"
+    "currency": "R$"
   },
   {
     "build_date": "2004-04-16",
     "created_at": "2022-02-28T16:53:30.511297339Z",
     "description": "House M.D.",
     "id": "eaeb5b21-fb81-4982-b76a-a50b918020c1",
-    "value": "8",
+    "value": 8.5,
     "size": 177,
     "country": "United States of America",
-    "currency": "Dollar"
+    "currency": "$"
   }
 ]

@@ -10,6 +10,5 @@ display-resource = Id: { $id }
     Value: { $value }
     Size: { $size }
     Country: { $country }
-    Currency: { $currency }
 
 health-check = Alive!

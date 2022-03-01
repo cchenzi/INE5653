@@ -10,7 +10,6 @@ display-resource = Id: { $id }
     Valor: { $value }
     Tamanho: { $size }
     País: { $country }
-    Moeda: { $currency }
 
 health-check = Vivo!
 

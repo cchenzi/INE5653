@@ -34,7 +34,7 @@ pub fn save_content(content: &[Property]) {
     println!("Saving content to file...");
     let file = File::create(DB_FILE_NAME).expect("Unable to open the db file!");
     let writer = BufWriter::new(file);
-    serde_json::to_writer_pretty(writer, content).expect("Unable to reade file!")
+    serde_json::to_writer_pretty(writer, content).expect("Unable to read file!")
 }
 
 pub fn search_content(content: &[Property], id: &uuid::Uuid) -> Result<Property, String> {
@@ -66,8 +66,8 @@ pub fn insert_property(
         created_at: Utc::now(),
         description: input.description,
         id,
-        value: input.value,
-        size: input.size,
+        value: Property::parse_value(&input.value),
+        size: input.size as f64,
         country: input.country.as_str().to_string(),
         currency: input.country.currency().to_string(),
     };
