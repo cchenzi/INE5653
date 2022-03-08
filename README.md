@@ -2,7 +2,11 @@
 
 ## How to
 
-Install [it](https://www.rust-lang.org/tools/install) and then `cargo run`.
+First, install [it](https://www.rust-lang.org/tools/install).
+
+Currently, two languages are supported by the app: `pt-BR`(the default at .env) and `en-US`. In order to choose the language, you can change it at the .env file or pass it when running the app.
+
+To run it, simply `cargo run` or `APP_LANGUAGE=your_option cargo run`. Then, to interact with the APIs, open another terminal session/tab/whatever and send requests to the app!
 
 ## APIs
 
